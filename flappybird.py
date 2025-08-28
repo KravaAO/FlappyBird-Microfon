@@ -8,16 +8,18 @@ clock = time.Clock()
 
 player_rect = Rect(80, 200, 80, 80)
 
+
 def generate_pipes(count, pipe_width=140, gap=280, min_height=50, max_height=440, distance=650):
-   pipes = []
-   start_x = window_size[0]
-   for i in range(count):
-       height = randint(min_height, max_height)
-       top_pipe = Rect(start_x, 0, pipe_width, height)
-       bottom_pipe = Rect(start_x, height + gap, pipe_width, window_size[1] - (height + gap))
-       pipes.extend([top_pipe, bottom_pipe])
-       start_x += distance
-   return pipes
+    pipes = []
+    start_x = window_size[0]
+    for i in range(count):
+        height = randint(min_height, max_height)
+        top_pipe = Rect(start_x, 0, pipe_width, height)
+        bottom_pipe = Rect(start_x, height + gap, pipe_width, window_size[1] - (height + gap))
+        pipes.extend([top_pipe, bottom_pipe])
+        start_x += distance
+    return pipes
+
 
 pipes = generate_pipes(150)
 pipe_speed = 8
@@ -38,7 +40,7 @@ while True:
         if pipe.x < -100:
             pipes.remove(pipe)
         if player_rect.colliderect(pipe):
-            touch_point_x  = pipe.x
+            touch_point_x = pipe.x
             is_touch = True
 
     display.update()
